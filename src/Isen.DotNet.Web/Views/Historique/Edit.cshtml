@@ -1,0 +1,84 @@
+@{
+    ViewData["Title"] = "Edition d'un Historique'";
+}
+@using Isen.DotNet.Library.Models
+@using Isen.DotNet.Library.Repositories.Interfaces
+@model Historique
+@inject IClubRepository _clubRepository
+@inject IJoueurRepository _joueurRepository
+<h1>Edition d'un Historique' (formulaire)</h1>
+
+<div class="row">
+    <div class="col-12">
+        
+        <form class="form-group" asp-action="Edit">
+            
+            <input type="hidden" 
+                   asp-for="Id"
+                   value="@Model?.Id" />
+
+            
+            <div class="form-group">
+                <label for="Joueuse">Joueuse</label>
+                @Html.DropDownListFor(
+                    h => h.JoueurId,
+                    new SelectList(
+                        _joueurRepository.GetAll(),
+                        "Id",
+                        "Name"),
+                    "Sélectionnez une joueuse...",
+                    new { @class = "form-control" }
+                    )
+            </div>
+
+            <div class="form-group">
+                <label for="Club">Club</label>
+                @Html.DropDownListFor(
+                    h => h.ClubId,
+                    new SelectList(
+                        _clubRepository.GetAll(),
+                        "Id",
+                        "Name"),
+                    "Sélectionnez un club...",
+                    new { @class = "form-control" }
+                    )
+            </div>
+
+
+            <div class="form-group">
+                <label for="situation">Situation du club</label>
+                <input id="clubName"
+                       type="text"
+                       class="form-control"
+                       placeholder="Situation"
+                       asp-for="Name"
+                       value="@Model?.Name" />
+            </div>
+
+            <div class="form-group">
+                <label for="Debut">Date de Début</label>
+                <input id="Debut"
+                       type="text"
+                       class="form-control"
+                       asp-for="Debut"
+                       value="@Model?.Debut.ToShortDateString()"/>
+            </div>
+
+            <div class="form-group">
+                <label for="Fin">Date de Fin</label>
+                <input id="Fin"
+                       type="text"
+                       class="form-control"
+                       asp-for="Fin"
+                       value="@Model?.Fin.ToShortDateString()" />
+            </div>
+            
+
+            <button type="submit" class="btn btn-primary">Valider</button>
+            <a class="btn btn-secondary"
+               asp-controller="Club" asp-action="Index">Annuler</a>
+
+        </form>
+
+    </div>
+</div>

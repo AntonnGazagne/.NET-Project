@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "Tous les Historiques";
+}
+@using Isen.DotNet.Library.Models
+@model IEnumerable<Historique>
+
+<h1>Tous les Historique</h1>
+
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Joueur</th>
+          <th scope="col">Nom du club</th>
+          <th scope="col">Situation du club</th>
+          <th scope="col">Date de début</th>
+          <th scope="col">Date de fin</th>
+          <th>Action...</th>
+      </tr>
+  </thead>
+  <tbody>
+    @foreach(var historique in Model)
+    { 
+      <tr>
+          <th scope="row">@historique.Id</th>
+          <td>@historique.Joueur.Name</td>
+          <td>@historique.Club.Name</td>
+          <td>@historique.Name</td>
+          <td>@historique.Debut.Date.ToString("d")</td>
+          <td>@historique.Fin.Date.ToString("d")</td>
+
+          <td>
+              <a class="btn btn-outline-primary"
+                 asp-controller="Historique"
+                 asp-action="Edit"
+                 asp-route-id="@historique.Id">Modifier</a>
+              <a class="btn btn-outline-danger"
+                 asp-controller="Historique"
+                 asp-action="Delete"
+                 asp-route-id="@historique.Id">Supprimer</a>
+          </td>
+      </tr>
+     }
+  </tbody>
+</table>

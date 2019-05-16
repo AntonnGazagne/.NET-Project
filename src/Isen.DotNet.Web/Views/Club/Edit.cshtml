@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Edition d'un club'";
+}
+@using Isen.DotNet.Library.Models
+@model Club
+<h1>Edition d'un club' (formulaire)</h1>
+
+<div class="row">
+    <div class="col-12">
+        
+        <form class="form-group" asp-action="Edit">
+            
+            <input type="hidden" 
+                   asp-for="Id"
+                   value="@Model?.Id" />
+
+            <div class="form-group">
+                <label for="clubName">Nom du club</label>
+                <input id="clubName"
+                       type="text"
+                       class="form-control"
+                       placeholder="Club name"
+                       asp-for="Name"
+                       value="@Model?.Name" />
+            </div>
+            
+            <div class="form-group">
+                <label for="clubAdresse">Adresse</label>
+                <input id="clubAdresse"
+                       type="text"
+                       class="form-control"
+                       placeholder="Adresse"
+                       asp-for="Adresse"
+                       value="@Model?.Adresse" />
+            </div>
+
+            <div class="form-group">
+                <label for="clubGPS">GPS</label>
+                <input id="clubGPS"
+                       type="text"
+                       class="form-control"
+                       placeholder="GPS"
+                       asp-for="GPS"
+                       value="@Model?.GPS" />
+            </div>
+
+            <div class="form-group">
+                <label for="clubLogo">Logo URL</label>
+                <input id="clubLogo"
+                       type="text"
+                       class="form-control"
+                       placeholder="Logo"
+                       asp-for="Logo"
+                       value="@Model?.Logo" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Valider</button>
+            <a class="btn btn-secondary"
+               asp-controller="Club" asp-action="Index">Annuler</a>
+
+        </form>
+
+    </div>
+</div>
