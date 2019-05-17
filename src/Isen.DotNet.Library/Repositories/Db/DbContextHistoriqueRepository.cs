@@ -34,12 +34,10 @@ namespace Isen.DotNet.Library.Repositories.Db
         {
             if (entity.IsNew)
             {
-                entity.JsonJoueur = JsonConvert.SerializeObject(_dbContext.JoueurCollection.Single(p => entity.JoueurId == p.Id).ToDynamic(), Formatting.Indented);
                 DbContext.Add(entity);
             }
             else
             {
-                entity.JsonJoueur = JsonConvert.SerializeObject(_dbContext.JoueurCollection.Single(p => entity.JoueurId == p.Id).ToDynamic(), Formatting.Indented);
                 DbContext.Update(entity);
             }
         }

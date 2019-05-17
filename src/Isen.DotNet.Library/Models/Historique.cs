@@ -20,8 +20,6 @@ namespace Isen.DotNet.Library.Models
         public int? JoueurId { get;set; }
         public Joueur Joueur {get;set;}
         
-        public string JsonJoueur {get; set;}
-        
 
         [NotMapped]
         public override string Display => 
@@ -36,7 +34,6 @@ namespace Isen.DotNet.Library.Models
             Fin = copy.Fin;
             Joueur = copy.Joueur;
             JoueurId = copy.JoueurId;
-            JsonJoueur = copy.JsonJoueur;
         }
 
         
@@ -45,7 +42,7 @@ namespace Isen.DotNet.Library.Models
             var baseDynamic = base.ToDynamic();
             baseDynamic.Debut = Debut;
             baseDynamic.Fin = Fin;
-            baseDynamic.Joueur = JsonConvert.DeserializeObject<Joueur>(JsonJoueur).ToDynamic();
+            baseDynamic.Joueur = Joueur.ToDynamic();
             return baseDynamic;
         }
     }
